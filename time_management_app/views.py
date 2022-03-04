@@ -3,9 +3,14 @@ from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import FileResponse
 
 from time_management_app.models import TimeManagement
 from time_management_app.forms import TimeManagementForm
+
+import datetime 
+import pandas as pd
+import time
 
 
 @method_decorator(login_required, name='dispatch')
@@ -71,3 +76,55 @@ class Detail(View):
         obj = get_object_or_404(TimeManagement, pk=id)
         context = {'obj': obj}
         return render(request, 'detail.html', context)    
+
+
+def aggregate():
+    # today = datetime.datetime.today()
+    # thismonth = datetime.datetime(today.year, today.month, 1)
+    # lastmonth = thismonth + datetime.timedelta(days=-1)
+    objs = TimeManagement.objects.all()
+    records = []
+    for obj in objs:
+        
+        date = obj.date
+        start = obj.start_time
+        end = obj.end_time 
+        rest = obj.rest_time
+        records.append([date, start, end, rest])
+    
+    records_df = pd.DataFrame(records, columns=['date', 'start', 'end', 'rest'])
+    records_df.to_csv('report.csv')
+
+def file_download(request, month='this'):
+    today = datetime.datetime.today()
+    this_month = datetime.datetime(today.year, today.month, 1)
+    last_month = this_month + datetime.timedelta(days=-1)
+
+    if month == 'this':
+        target_month = this_month.strftime('%Y%m')
+    else:
+        target_month = last_month.strftime('%Y%m')
+
+    current_user = request.user
+    objs = TimeManagement.objects.filter(created_by=current_user)
+    records = []
+    for obj in objs:
+        date = obj.date
+        if date.strftime('%Y%m') == target_month:
+            start = obj.start_time
+            end = obj.end_time 
+            rest = obj.rest_time
+            records.append([date, start, end, rest])
+        else:
+            continue
+    
+    records_df = pd.DataFrame(records, columns=['date', 'start', 'end', 'rest'])
+    records_df.to_csv('./static/report.csv')
+
+    time.sleep(3)
+
+    filepath = './static/report.csv'
+    filename = 'reports.csv'
+    return FileResponse(open(filepath, "rb"), as_attachment=True, filename=filename)
+
+
