@@ -10,7 +10,7 @@ from time_management_app.forms import TimeManagementForm
 
 @method_decorator(login_required, name='dispatch')
 class Home(ListView):
-    paginate_by = 10
+    paginate_by = 7
     model = TimeManagement
     template_name = 'index.html'
 
