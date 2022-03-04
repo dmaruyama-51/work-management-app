@@ -5,3 +5,4 @@ django-heroku
 gunicorn
 psycopg2==2.8.6
 python-dotenv
+pandas
