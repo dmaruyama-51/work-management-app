@@ -63,14 +63,13 @@
       </div>
     </div>
 
+    {% if error_msg %}
     <div class='pt-4'>
-      {% if error_msg %}
       <p>=============</p>
       <p>{{ error_msg }}</p>
       <p>=============</p>
-      {% endif %}
-
     </div>
+    {% endif %}
   
     <div class="pt-5">
       <div class="flex justify-start">
