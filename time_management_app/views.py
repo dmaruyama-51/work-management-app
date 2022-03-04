@@ -77,24 +77,6 @@ class Detail(View):
         context = {'obj': obj}
         return render(request, 'detail.html', context)    
 
-
-def aggregate():
-    # today = datetime.datetime.today()
-    # thismonth = datetime.datetime(today.year, today.month, 1)
-    # lastmonth = thismonth + datetime.timedelta(days=-1)
-    objs = TimeManagement.objects.all()
-    records = []
-    for obj in objs:
-        
-        date = obj.date
-        start = obj.start_time
-        end = obj.end_time 
-        rest = obj.rest_time
-        records.append([date, start, end, rest])
-    
-    records_df = pd.DataFrame(records, columns=['date', 'start', 'end', 'rest'])
-    records_df.to_csv('report.csv')
-
 def file_download(request, month='this'):
     today = datetime.datetime.today()
     this_month = datetime.datetime(today.year, today.month, 1)
