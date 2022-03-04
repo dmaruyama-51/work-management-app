@@ -33,7 +33,7 @@ class New(View):
             obj = form.save(commit=False)
             obj.created_by = request.user
             obj.save()
-            return redirect('detail', id=obj.pk)
+            return redirect('time_management:detail', id=obj.pk)
         else:
             error_msg = form.errors
             form = TimeManagementForm()
@@ -56,7 +56,7 @@ class Edit(View):
             obj = form.save(commit=False)
             obj.created_by = request.user
             obj.save()
-            return redirect('detail', id=obj.pk)
+            return redirect('time_management:detail', id=obj.pk)
         else:
             error_msg = form.errors
             form = TimeManagementForm(instance=obj)
