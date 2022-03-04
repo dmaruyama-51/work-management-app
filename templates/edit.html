@@ -14,49 +14,49 @@
       <div class="pt-8 space-y-6 sm:pt-6 sm:space-y-5">
         <div>
           <h3 class="text-3xl mb-5 leading-6 font-medium text-gray-900">Edit</h3>
-          <p class="mt-1 max-w-2xl text-base text-gray-500">記録を編集することができます。</p>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500">記録を編集することができます。</p>
         </div>
         <div class="space-y-6 sm:space-y-5">
             
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="first-name" class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 日付 </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 日付 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='date' id='id_date' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-lg border-gray-300 rounded-md" value="{{ form.date.value }}">
+              <input type="text" name='date' id='id_date' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.date.value }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="first-name" class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務開始時刻 </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務開始時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='start_time' id='id_start_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-lg border-gray-300 rounded-md" value="{{ form.start_time.value }}">
+              <input type="text" name='start_time' id='id_start_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.start_time.value }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="first-name" class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務終了時刻 </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務終了時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='end_time' id='id_end_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-lg border-gray-300 rounded-md" value="{{ form.end_time.value }}">
+              <input type="text" name='end_time' id='id_end_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.end_time.value }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="first-name" class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 休憩時間 </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 休憩時間 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-lg border-gray-300 rounded-md" value="{{ form.rest_time.value }}">
+              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rest_time.value }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="first-name" class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の点数（5点満点） </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の点数（5点満点） </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rating' id='id_rating' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-lg border-gray-300 rounded-md" value="{{ form.rating.value }}">
+              <input type="number" name='rating' id='id_rating' class="p-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rating.value }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label class="block text-lg font-medium text-gray-700 sm:mt-px sm:pt-2"> 振り返り </label>
+            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 振り返り </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea rows="6" type="text" name='comment' id='id_comment' class="p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:max-w-md sm:text-base border-gray-300 rounded-md">{{ form.comment.value }}</textarea>
+              <textarea rows="6" type="text" name='comment' id='id_comment' class="p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md">{{ form.comment.value }}</textarea>
             </div>
           </div>
         </div>
@@ -65,14 +65,17 @@
 
     <div class='pt-4'>
       {% if error_msg %}
+      <p>=============</p>
       <p>{{ error_msg }}</p>
+      <p>=============</p>
       {% endif %}
+
     </div>
   
     <div class="pt-5">
       <div class="flex justify-start">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-        <button type="button" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="{% url 'index' %}">Back to Top</a></button>
+        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+        <button type="button" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><a href="{% url 'index' %}">Back to Top</a></button>
       </div>
     </div>
   </form> 
