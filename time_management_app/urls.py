@@ -8,5 +8,6 @@ urlpatterns = [
     path('new/', views.New.as_view(), name='new'),
     path('detail/<int:id>/', views.Detail.as_view(), name='detail'),
     path('detail/<int:id>/edit/', views.Edit.as_view() ,name='edit'),
+    path('detail/<int:pk>/delete/', views.Delete.as_view() ,name='delete'),
     path('download/<str:month>', views.file_download, name='download'),
 ]

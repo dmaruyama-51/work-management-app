@@ -52,14 +52,15 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-7 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">日付</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">始業</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">終業</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">休憩時間</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">点数</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">振り返り</th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Detail</span></th>
-                        <th scope="col" class="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Edit</span></th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">日付</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">始業</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">終業</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">休憩時間</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">点数</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">振り返り</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Detail</span></th>
+                        <th scope="col" class="px-2 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Edit</span></th>
+                        <th scope="col" class="pl-2 pr-4 py-3 text-left text-sm font-medium text-red-500 uppercase tracking-wider"><span class="sr-only">Delete</span></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -71,8 +72,9 @@
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.rest_time }} 時間</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.rating }}</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left">{{ obj.comment　| truncatechars:20 }}</th>
-                        <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:detail' id=obj.pk %}" class="text-teal-600 hover:text-teal-900">Detail</a></th>
-                        <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:edit' id=obj.pk %}" class="text-teal-600 hover:text-teal-900">Edit</a></th>
+                        <th class="px-4 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:detail' id=obj.pk %}" class="text-teal-600 hover:text-teal-900">Detail</a></th>
+                        <th class="px-2 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:edit' id=obj.pk %}" class="text-teal-600 hover:text-teal-900"><img class="mx-auto h-4 w-auto" src="{% static 'edit.png' %}" alt="delete"></a></th>
+                        <th class="pl-2 pr-4 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:delete' obj.pk %}" class="text-red-600 hover:text-red-900"><img class="mx-auto h-4 w-auto" src="{% static 'delete.png' %}" alt="delete"></a></th>
                     </tr>
                     {% endfor %}
                 </tbody>

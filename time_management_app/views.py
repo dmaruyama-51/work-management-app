@@ -1,10 +1,12 @@
+from re import template
 from sqlite3 import IntegrityError
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import FileResponse
+from django.urls import reverse_lazy
 
 from time_management_app.models import TimeManagement
 from time_management_app.forms import TimeManagementForm
@@ -46,7 +48,7 @@ class New(View):
                 obj.created_by = request.user
                 obj.save()
                 return redirect('time_management:detail', id=obj.pk)
-            except IntegrityError:
+            except:
                 error_msg = '日付を重複して登録することはできません。'
                 form = TimeManagementForm()
                 context = {'form': form, 'error_msg': error_msg}
@@ -75,7 +77,7 @@ class Edit(View):
                 obj.created_by = request.user
                 obj.save()
                 return redirect('time_management:detail', id=obj.pk)
-            except IntegrityError:
+            except:
                 error_msg = '日付を重複して登録することはできません。'
                 form = TimeManagementForm(instance=obj)
                 context = {'form': form, 'error_msg': error_msg}
@@ -93,6 +95,11 @@ class Detail(View):
         obj = get_object_or_404(TimeManagement, pk=id)
         context = {'obj': obj}
         return render(request, 'detail.html', context)    
+
+class Delete(DeleteView):
+    model = TimeManagement
+    template_name = 'delete.html'
+    success_url = reverse_lazy('time_management:index')
 
 @login_required
 def file_download(request, month='this'):
