@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 if os.environ.get('ENV') == 'heroku':
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    DEBUG = True
+    DEBUG = False
 else:
     load_dotenv(BASE_DIR/'.env')
     SECRET_KEY = os.environ.get('SECRET_KEY')
