@@ -127,7 +127,7 @@ def file_download(request, month='this'):
         else:
             continue
     
-    records_df = pd.DataFrame(records, columns=['日付', '開始時間', '終了時間', '休憩時間', '交通費', '備考'])
+    records_df = pd.DataFrame(records, columns=['日付', '開始時間', '終了時間', '休憩時間', '交通費', '備考']).sort_values('日付')
     records_df.to_csv('./static/report.csv')
 
     time.sleep(1)
