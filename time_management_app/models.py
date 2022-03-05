@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class TimeManagement(models.Model):
-    date = models.DateField('日付')
+    date = models.DateField('日付', unique=True)
     start_time = models.TimeField('始業時刻', null=True, blank=True)
     end_time = models.TimeField('就業時刻', null=True, blank=True)
     rest_time = models.FloatField('休憩時間', null=True, blank=True)
