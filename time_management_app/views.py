@@ -121,14 +121,16 @@ def file_download(request, month='this'):
             start = obj.start_time
             end = obj.end_time 
             rest = obj.rest_time
-            records.append([date, start, end, rest])
+            travel_cost = obj.travel_cost
+            travel_remarks = obj.travel_remarks
+            records.append([date, start, end, rest, travel_cost, travel_remarks])
         else:
             continue
     
-    records_df = pd.DataFrame(records, columns=['date', 'start', 'end', 'rest'])
+    records_df = pd.DataFrame(records, columns=['日付', '開始時間', '終了時間', '休憩時間', '交通費', '備考'])
     records_df.to_csv('./static/report.csv')
 
-    time.sleep(3)
+    time.sleep(1)
 
     filepath = './static/report.csv'
     filename = 'reports.csv'

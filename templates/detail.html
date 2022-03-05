@@ -48,7 +48,21 @@
                 </div>
 
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の点数（5点満点） </label>
+                <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 交通費 </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <p class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">{{ obj.travel_cost }}</p>
+                </div>
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 備考 </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <p class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">{{ obj.travel_remarks}}</p>
+                </div>
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の調子（5点満点） </label>
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                     <p class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">{{ obj.rating }}</p>
                 </div>

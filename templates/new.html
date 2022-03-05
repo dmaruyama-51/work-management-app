@@ -24,35 +24,51 @@
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-4">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 日付（yyyy-mm-dd）</label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='date' id='id_date' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+              <input type="text" name='date' id='id_date' placeholder="2022-01-01" class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務開始時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='start_time' id='id_start_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+              <input type="text" name='start_time' id='id_start_time' placeholder='10:00' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務終了時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='end_time' id='id_end_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+              <input type="text" name='end_time' id='id_end_time' placeholder='19:00' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 休憩時間 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+              <input type="number" step='0.1' name='rest_time' id='id_rest_time' placeholder="1.0" class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 交通費 </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input type="number" name='travel_cost' id='id_travel_cost' placeholder="1000" class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+            </div>
+          </div>
+
+          <div class="sm:pb-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
+            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 備考 </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <textarea rows="2" type="text" name='travel_remarks' id='id_travel_remarks' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md"></textarea>
+            </div>
+          </div>
+
+          <div class="sm:border-dashed sm:border-b-2 sm:border-gray-200 w-9/12"></div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の点数（5点満点） </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rating' id='id_rating' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
+              <input type="number" name='rating' id='id_rating' placeholder='5' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md">
             </div>
           </div>
 

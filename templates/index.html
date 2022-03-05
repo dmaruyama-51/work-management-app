@@ -11,7 +11,7 @@
     <div class="flex flex-wrap flex-row">
         <div class="w-1/2">
             <h2 class="text-left text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Good Work, {{ user }} &#x1f44b;</h2>
-            <p class="mt-4 mx-auto text-left text-sm text-gray-500">今日もよく働きました！1 日の記録をつけましょう。</p>
+            <p class="mt-4 mx-auto text-left text-sm text-gray-500">お疲れ様です。本日もよく働きました！</p>
             <div class="mt-4 flex justify-start">
                 <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -56,7 +56,7 @@
                         <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">始業</th>
                         <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">終業</th>
                         <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">休憩時間</th>
-                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">点数</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">今日の調子</th>
                         <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">振り返り</th>
                         <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Detail</span></th>
                         <th scope="col" class="px-2 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider"><span class="sr-only">Edit</span></th>
@@ -69,7 +69,7 @@
                         <th class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ obj.date }}</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.start_time }}</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.end_time }}</th>
-                        <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.rest_time }} 時間</th>
+                        <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.rest_time }}</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obj.rating }}</th>
                         <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-left">{{ obj.comment　| truncatechars:20 }}</th>
                         <th class="px-4 py-4 whitespace-nowrap text-sm text-gray-500"><a href="{% url 'time_management:detail' id=obj.pk %}" class="text-teal-600 hover:text-teal-900">Detail</a></th>

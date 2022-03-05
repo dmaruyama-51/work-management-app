@@ -49,8 +49,24 @@
             </div>
           </div>
 
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 交通費 </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input type="number" name='travel_cost' id='id_travel_cost' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.travel_cost.value }}">
+            </div>
+          </div>
+
+          <div class="sm:pb-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
+            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 備考 </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <textarea rows="2" type="text" name='travel_remarks' id='id_travel_remarks' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md" value="{{ form.travel_remarks.value }}"></textarea>
+            </div>
+          </div>
+          
+          <div class="sm:border-dashed sm:border-b-2 sm:border-gray-200 w-9/12"></div>
+
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
-            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の点数（5点満点） </label>
+            <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 今日の調子（5点満点） </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <input type="number" name='rating' id='id_rating' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rating.value }}">
             </div>
