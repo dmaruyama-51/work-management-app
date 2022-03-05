@@ -10,7 +10,7 @@
 <div class="pt-12 pb-6 ml-12">
     <div class="flex flex-wrap flex-row">
         <div class="w-1/2">
-            <h2 class="text-left text-xl font-bold tracking-tight text-gray-900 sm:text-xl">Good Work, {{ user }} &#x1f44b;</h2>
+            <h2 class="text-left text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Good Work, {{ user }} &#x1f44b;</h2>
             <p class="mt-4 mx-auto text-left text-sm text-gray-500">今日もよく働きました！1 日の記録をつけましょう。</p>
             <div class="mt-4 flex justify-start">
                 <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
@@ -104,7 +104,10 @@
   </nav>
 
 {% else %}
-<p>1 件も登録はありません。</p>
+<div class="pt-16">
+    <p class='text-center text-sm text-gray-500'>1 件も登録はありません。</p>
+    <p class='mt-2 text-center text-sm text-gray-500'>Check Out から勤怠記録をつけましょう！</p>
+</div>
 {% endif %}
 
 {% endblock content %}
