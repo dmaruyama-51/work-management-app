@@ -1,3 +1,4 @@
+from sqlite3 import IntegrityError
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from django.views.generic import ListView
@@ -40,10 +41,16 @@ class New(View):
         form = TimeManagementForm(request.POST)
 
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.created_by = request.user
-            obj.save()
-            return redirect('time_management:detail', id=obj.pk)
+            try:
+                obj = form.save(commit=False)
+                obj.created_by = request.user
+                obj.save()
+                return redirect('time_management:detail', id=obj.pk)
+            except IntegrityError:
+                error_msg = '日付を重複して登録することはできません。'
+                form = TimeManagementForm()
+                context = {'form': form, 'error_msg': error_msg}
+                return render(request, 'new.html', context)
         else:
             error_msg = form.errors
             form = TimeManagementForm()
@@ -63,10 +70,16 @@ class Edit(View):
         obj = get_object_or_404(TimeManagement, pk=id)
         form = TimeManagementForm(request.POST, instance=obj)
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.created_by = request.user
-            obj.save()
-            return redirect('time_management:detail', id=obj.pk)
+            try:
+                obj = form.save(commit=False)
+                obj.created_by = request.user
+                obj.save()
+                return redirect('time_management:detail', id=obj.pk)
+            except IntegrityError:
+                error_msg = '日付を重複して登録することはできません。'
+                form = TimeManagementForm(instance=obj)
+                context = {'form': form, 'error_msg': error_msg}
+                return render(request, 'edit.html', context)
         else:
             error_msg = form.errors
             form = TimeManagementForm(instance=obj)
