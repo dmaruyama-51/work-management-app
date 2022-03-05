@@ -23,6 +23,11 @@ class Home(ListView):
         current_user = self.request.user
         return TimeManagement.objects.filter(created_by=current_user).order_by('-date')
 
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['username'] = self.request.user 
+        return context 
+
 
 @method_decorator(login_required, name='dispatch')
 class New(View):
