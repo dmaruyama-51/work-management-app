@@ -87,7 +87,6 @@ class Edit(View):
             return render(request, 'edit.html', context)
 
 
-
 @method_decorator(login_required, name='dispatch')
 class Detail(View):
     def get(self, request, id):
@@ -95,6 +94,7 @@ class Detail(View):
         context = {'obj': obj}
         return render(request, 'detail.html', context)    
 
+@login_required
 def file_download(request, month='this'):
     today = datetime.datetime.today()
     this_month = datetime.datetime(today.year, today.month, 1)
