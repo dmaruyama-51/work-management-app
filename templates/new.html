@@ -8,10 +8,12 @@
 
 {% block content %}
 
-<form method="POST" class="ml-12 space-y-6">{% csrf_token %}
+<div class="ml-12 mt-6">
+<form method="POST">{% csrf_token %}
     <div class="space-y-8 sm:space-y-5">
   
       <div class="pt-8 space-y-6 sm:pt-6 sm:space-y-5 ">
+
         <div class="sm:border-b-4 sm:border-gray-200 w-9/12">
           <h3 class="text-2xl mb-5 leading-6 font-medium text-gray-900">Check Out</h3>
           <p class="pb-6 mt-1 text-sm text-gray-500">1 日の勤怠記録をつけてください。日付のみ入力必須項目です。</p>
@@ -59,9 +61,11 @@
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <textarea rows="6" type="text" name='comment' id='id_comment' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md"></textarea>
             </div>
+          </div>
         </div>
+
       </div>
-    </div>
+
     </div>
     
     {% if error_msg %}
@@ -78,5 +82,6 @@
         <button type="button" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-700 bg-teal-100 hover:bg-teal-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"><a href="{% url 'time_management:index' %}">Back to Top</a></button>
       </div>
     </div>
-  </form>
+</form>
+</div>
 {% endblock content %}
