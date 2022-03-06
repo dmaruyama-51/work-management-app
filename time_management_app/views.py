@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import FileResponse
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 from time_management_app.models import TimeManagement
 from time_management_app.forms import TimeManagementForm
@@ -48,16 +49,19 @@ class New(View):
                 obj = form.save(commit=False)
                 obj.created_by = request.user
                 obj.save()
+                messages.add_message(request, messages.SUCCESS, "無事記録できました！今日もお疲れ様でした！")
                 return redirect('time_management:detail', id=obj.pk)
             except:
                 error_msg = '日付を重複して登録することはできません。'
                 form = TimeManagementForm()
-                context = {'form': form, 'error_msg': error_msg}
+                context = {'form': form}
+                messages.add_message(request, messages.ERROR, error_msg)
                 return render(request, 'new.html', context)
         else:
             error_msg = form.errors
             form = TimeManagementForm()
-            context = {'form': form, 'error_msg': error_msg}
+            context = {'form': form}
+            messages.add_message(request, messages.ERROR, error_msg)
             return render(request, 'new.html', context)
 
 
@@ -77,16 +81,19 @@ class Edit(View):
                 obj = form.save(commit=False)
                 obj.created_by = request.user
                 obj.save()
+                messages.add_message(request, messages.SUCCESS, "編集完了です！")
                 return redirect('time_management:detail', id=obj.pk)
             except:
                 error_msg = '日付を重複して登録することはできません。'
                 form = TimeManagementForm(instance=obj)
-                context = {'form': form, 'error_msg': error_msg}
+                context = {'form': form}
+                messages.add_message(request, messages.ERROR, error_msg)
                 return render(request, 'edit.html', context)
         else:
             error_msg = form.errors
             form = TimeManagementForm(instance=obj)
             context = {'form': form, 'error_msg': error_msg}
+            messages.add_message(request, messages.ERROR, error_msg)
             return render(request, 'edit.html', context)
 
 
