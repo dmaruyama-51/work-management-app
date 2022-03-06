@@ -12,6 +12,7 @@ from time_management_app.models import TimeManagement
 from time_management_app.forms import TimeManagementForm
 
 import datetime 
+from dateutil.relativedelta import relativedelta
 import pandas as pd
 import time
 
@@ -109,15 +110,25 @@ def file_download(request, month='this'):
 
     if month == 'this':
         target_month = this_month.strftime('%Y%m')
+        target_date_start = datetime.datetime(this_month.year, this_month.month, 1)
+        target_date_end = target_date_start + relativedelta(months=1) + datetime.timedelta(days=-1)
     else:
         target_month = last_month.strftime('%Y%m')
+        target_date_start = datetime.datetime(last_month.year, last_month.month, 1)
+        target_date_end = target_date_start + relativedelta(months=1) + datetime.timedelta(days=-1)
 
+    # 当月の全日数
+    template_df = pd.DataFrame(pd.date_range(start=target_date_start, end=target_date_end, freq='D')).rename(columns={0: '日付'})
+    template_df['日付'] = template_df['日付']
+
+    # db から当月のレコード抽出
     current_user = request.user
     objs = TimeManagement.objects.filter(created_by=current_user)
     records = []
     for obj in objs:
         date = obj.date
         if date.strftime('%Y%m') == target_month:
+            date = pd.Timestamp(date)
             start = obj.start_time
             end = obj.end_time 
             rest = obj.rest_time
@@ -128,7 +139,8 @@ def file_download(request, month='this'):
             continue
     
     records_df = pd.DataFrame(records, columns=['日付', '開始時間', '終了時間', '休憩時間', '交通費', '備考']).sort_values('日付')
-    records_df.to_csv('./static/report.csv')
+    reports_df = pd.merge(template_df, records_df, how='left', on='日付')
+    reports_df.to_csv('./static/report.csv')
 
     time.sleep(1)
 
