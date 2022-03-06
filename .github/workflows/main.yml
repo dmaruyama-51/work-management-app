@@ -23,4 +23,4 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "work-management-d"
-          heroku_email: 0501awasuram@gmail.com
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
