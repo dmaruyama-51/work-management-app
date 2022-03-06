@@ -24,42 +24,42 @@
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-4">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 日付（yyyy-mm-dd）</label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='date' id='id_date' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.date.value }}">
+              <input type="text" name='date' id='id_date' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.date.value |date:'Y-m-d' }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務開始時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='start_time' id='id_start_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.start_time.value }}">
+              <input type="text" name='start_time' id='id_start_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.start_time.value　|default:'' }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 業務終了時刻 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="text" name='end_time' id='id_end_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.end_time.value }}">
+              <input type="text" name='end_time' id='id_end_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.end_time.value |default:'' }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 休憩時間 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rest_time.value }}">
+              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rest_time.value |default:'' }}">
             </div>
           </div>
 
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 交通費 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='travel_cost' id='id_travel_cost' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.travel_cost.value }}">
+              <input type="number" name='travel_cost' id='id_travel_cost' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.travel_cost.value |default:'' }}">
             </div>
           </div>
 
           <div class="sm:pb-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-star sm:pt-2">
             <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 備考 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea rows="2" type="text" name='travel_remarks' id='id_travel_remarks' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md">{{ form.travel_remarks.value }}</textarea>
+              <textarea rows="2" type="text" name='travel_remarks' id='id_travel_remarks' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md">{{ form.travel_remarks.value |default:'' }}</textarea>
             </div>
           </div>
           
@@ -75,7 +75,7 @@
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
             <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 振り返り </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea rows="6" type="text" name='comment' id='id_comment' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md">{{ form.comment.value }}</textarea>
+              <textarea rows="6" type="text" name='comment' id='id_comment' class="p-2 shadow-sm focus:ring-teal-500 focus:border-teal-500 block w-full sm:max-w-md sm:text-sm border-gray-300 rounded-md">{{ form.comment.value |default:'' }}</textarea>
             </div>
           </div>
         </div>
