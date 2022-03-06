@@ -4,6 +4,7 @@
 
 .env
 tools/
+static/reports.csv
 
 ### Django ###
 *.log
