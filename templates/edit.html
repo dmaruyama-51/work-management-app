@@ -57,7 +57,7 @@
           <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start   sm:pt-2">
             <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"> 休憩時間 </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <input type="number" name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rest_time.value |default:'' }}">
+              <input type="number" step='0.1' name='rest_time' id='id_rest_time' class="p-2 max-w-lg block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:max-w-xs lg:text-sm border-gray-300 rounded-md" value="{{ form.rest_time.value |default:'' }}">
             </div>
           </div>
 
