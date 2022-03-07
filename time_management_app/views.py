@@ -49,7 +49,16 @@ class New(View):
                 obj = form.save(commit=False)
                 obj.created_by = request.user
                 obj.save()
-                messages.add_message(request, messages.SUCCESS, "無事記録できました！今日もお疲れ様でした！")
+
+                # 午前か午後かで表示メッセージを出し分ける
+                current_time = datetime.datetime.today().hour
+
+                if current_time > 12:
+                    msg = '無事記録できました！今日もお疲れ様でした！'
+                else:
+                    msg = '無事記録できました！今日もがんばりましょう！'
+
+                messages.add_message(request, messages.SUCCESS, msg)
                 return redirect('time_management:detail', id=obj.pk)
             except:
                 error_msg = '日付を重複して登録することはできません。'
