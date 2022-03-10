@@ -14,9 +14,21 @@
 
 {% block content %}
 
-<div class='container mx-auto w-10/12 mt-12'>
-    <h2>勤怠状況</h2>
-    <canvas id="workRating"></canvas>
+<div class='container mx-auto w-10/12 mt-6'>
+    <div class="mx-auto py-4 px-4 sm:py-6 sm:px-6 lg:px-8">
+        <div class="text-center">
+        <p class="mt-1 text-2xl font-bold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-2xl">Health Monitoring</p>
+        <p class="max-w-xl mt-5 mx-auto text-sm text-gray-500">働きすぎには要注意！調子がよくても労働時間はほどほどにしましょう。</p>
+        </div>
+    </div>
+    <canvas id="workRating" class='mt-6'></canvas>
+
+    <div class="pt-6">
+        <div class="flex justify-center">
+          <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"><a href="{% url 'time_management:index' %}">Back to Top</a></button>
+          <!-- <button type="button" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-700 bg-teal-100 hover:bg-teal-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"><a href="{% url 'time_management:index' %}">Back to Top</a></button> -->
+        </div>
+      </div>
 </div>
 
 
