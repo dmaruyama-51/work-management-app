@@ -199,21 +199,29 @@ class Visualize(View):
                 end = obj.end_time
                 rest = obj.rest_time
                 try:
-                    work_time = (
+                    worktime = (
                         datetime.datetime.strptime(str(end), "%H:%M:%S")
                         - datetime.datetime.strptime(str(start), "%H:%M:%S")
                     ).seconds // 3600 - rest
+                    if worktime > 8.0:
+                        overtime = worktime - 8.0
+                        worktime = 8.0
+                    else:
+                        overtime = 0.0
                 except:
-                    work_time = 0.0
-                data_tmp.append([date, rating, work_time])
+                    worktime = 0.0
+                    overtime = 0.0
+
+                data_tmp.append([date, rating, worktime, overtime])
 
         df = pd.DataFrame(
-            data_tmp, columns=["date", "rating", "work_time"]
+            data_tmp, columns=["date", "rating", "worktime", "overtime"]
         ).sort_values("date")
         context = {
             "dates": df.date.to_list(),
             "ratings": df.rating.to_list(),
-            "work_time": df.work_time.to_list(),
+            "worktime": df.worktime.to_list(),
+            "overtime": df.overtime.to_list(),
         }
 
         return render(request, "visualize.html", context)
