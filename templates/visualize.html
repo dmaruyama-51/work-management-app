@@ -36,7 +36,8 @@
     {% autoescape off %}
     const date_list = "{{ dates }}"
     const rating_list = "{{ ratings }}"
-    const work_time_list = "{{ work_time }}"
+    const worktime_list = "{{ worktime }}"
+    const overtime_list = "{{ overtime }}"
     {% endautoescape %}
 
     function parseDate(dateString){
@@ -46,10 +47,8 @@
 
     label_dates = date_list.replace(/( |'|\[|\])/g, '').split(',').map(dateString => parseDate(dateString))
     ratings = rating_list.replace(/(\[|\]| )/g, '').split(',').map(numString => Number(numString))
-    work_times = work_time_list.replace(/(\[|\]| )/g, '').split(',').map(numString => Number(numString))
-
-    console.log(ratings)
-    console.log(work_times)
+    worktimes = worktime_list.replace(/(\[|\]| )/g, '').split(',').map(numString => Number(numString))
+    overtimes = overtime_list.replace(/(\[|\]| )/g, '').split(',').map(numString => Number(numString))
 
     const data = {
         labels: label_dates,
@@ -64,8 +63,16 @@
         {
             label: '労働時間',
             // borderColor: ['rgb(255, 140, 0)'],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            data: worktimes,
+            type: 'bar',
+            yAxisID: 'y-axes-2'
+        },
+        {
+            label: '労働時間（Over)',
+            // borderColor: ['rgb(255, 140, 0)'],
             backgroundColor: 'rgba(255, 165, 0, 0.8)',
-            data: work_times,
+            data: overtimes,
             type: 'bar',
             yAxisID: 'y-axes-2'
         }
@@ -81,7 +88,8 @@
                     type: 'time',
                     time: {
                         unit: 'day'
-                    }
+                    },
+                    stacked: true,
                 }],
                 yAxes: [{
                     id: 'y-axes-1',
@@ -96,6 +104,7 @@
                     {
                     id: 'y-axes-2',
                     type: 'linear',
+                    stacked: true,
                     position: 'right',
                     ticks: {
                         max: 12.0,
