@@ -10,6 +10,8 @@
 {% block others %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {% endblock others %}
 
 {% block content %}
@@ -28,11 +30,17 @@
           <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"><a href="{% url 'time_management:index' %}">Back to Top</a></button>
           <!-- <button type="button" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-700 bg-teal-100 hover:bg-teal-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"><a href="{% url 'time_management:index' %}">Back to Top</a></button> -->
         </div>
-      </div>
+    </div>
+    <div class='pt-6' id='axiosTest'>
+        <p>[[ message ]]</p>
+        <li v-for="t in text">[[ t ]]</li>
+    </div>
 </div>
 
 
 <script>
+
+    // chart.js
     {% autoescape off %}
     const date_list = "{{ dates }}"
     const rating_list = "{{ ratings }}"
@@ -120,6 +128,29 @@
         document.getElementById('workRating'),
         config
     )
+
+    // axios
+    const testVue = Vue.createApp({
+        // el: '#axiosTest',
+        data() {
+            return {
+                message: '',
+                text: ''
+            }
+        },
+        delimiters: ['[[', ']]'],
+        mounted(){
+            axios.get('/api/get_ratings')
+            .then(
+                response => {
+                    this.message = response.data.message;
+                    this.text = response.data.ratings;
+                    console.log(response.data.ratings)
+                }
+                ) 
+            .catch(error => console.log(error))
+        }
+    }).mount('#axiosTest')
 </script>
 
 {% endblock content %}

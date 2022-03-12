@@ -1,5 +1,6 @@
 from django.urls import path
 from time_management_app import views
+from time_management_app.api.get_ratings import get_ratings
 
 app_name = "time_management"
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path("detail/<int:pk>/delete/", views.Delete.as_view(), name="delete"),
     path("download/<str:month>", views.file_download, name="download"),
     path("visualize/", views.Visualize.as_view(), name="visualize"),
+    path("api/get_ratings/", get_ratings, name="get_ratings"),
 ]
