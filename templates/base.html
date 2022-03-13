@@ -20,6 +20,7 @@
 <body >
     
     <div class="flex flex-col min-h-screen bg-gray-50">
+        
         <div class="flex-grow">
             <div class="sticky top-0 z-50">
                 {% include 'components/header.html' %} 
@@ -28,6 +29,7 @@
                 {% block content %}
                 {% endblock content %}  
             </section>
+           
         </div>
         {% include 'components/footer.html' %}
     </div>
