@@ -1,25 +1,93 @@
 {% load static %}
 
+{% block others %}
+<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% endblock others %}
+
 {% if user.is_authenticated %}
-<header class="bg-teal-600">
-    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
-        <div class="w-full py-4 flex items-center justify-between border-b border-teal-500 lg:border-none">
-            <div class="flex items-center">
-                <a href="/">
-                <span class="sr-only">Work-Management</span>
-                <img class="h-10 w-auto" src="{% static 'logo-white.png' %}" alt="">
-                </a>
-                <div class="hidden ml-12 space-x-8 lg:block">
-                <a href="{% url 'time_management:new' %}" class="text-base font-medium text-white hover:text-teal-50"> Check Out </a>
-                <a href="{% url 'time_management:visualize' %}" class="text-base font-medium text-white hover:text-teal-50"> Visualize </a>
-                </div>
-            </div>
-            <div class="ml-10 space-x-4">
-                <a href="/accounts/logout" class="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-sm font-medium text-teal-600 hover:bg-teal-50">Sign Out</a>
-            </div>
+<nav id="navState" class="bg-teal-600 shadow">
+    <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teel-500" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+  
+              Heroicon name: outline/menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!--
+              Icon when menu is open.
+  
+              Heroicon name: outline/x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-    </nav>
-</header>
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0 flex items-center">
+            <img class="block h-8 w-auto" src="{% static 'logo-white.png' %}" alt="">
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+            <!-- <a href="/" class="border-white-500 text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Dashboard </a> -->
+            <a href="{% url 'time_management:index' %}" class="border-transparent text-gray-100 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Dashboard </a>
+            <a href="{% url 'time_management:new' %}" class="border-transparent text-gray-100 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Chek Out </a>
+            <a href="{% url 'time_management:visualize' %}" class="border-transparent text-gray-100 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Visuaize </a>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <button @click="changeState"  type="button" class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            <img class="h-4 w-4" src="{% static 'notify.png' %}" alt=""> 
+          </button>
+          <button type="button" class="flex justify-center ml-5 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            <a href="/accounts/logout"><img class="h-5 w-5" src="{% static 'logout.png' %}" alt=""></a>
+          </button>
+          <!-- information -->
+          <div v-if="showInfo" aria-live="assertive" class="fixed inset-0 flex items-end px-56 py-14 pointer-events-none sm:items-start">
+            <div class="w-full flex flex-col items-center space-y-4 sm:items-end"></div>
+              <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                <div class="p-4 ">
+                  <div class="">
+                    <div class="py-2 mb-2 border-b-2">
+                      <h4 class="text-sm font-semibold text-gray-900">お知らせ</p>
+                    </div>
+                    <div class="py-2 flex" v-for="info in infoContents">
+                      <p class="text-xs font-medium text-gray-900 w-3/12 align-bottom">[[ info.infoDate ]]</p>
+                      <p class="text-xs font-medium text-gray-900 w-8/12">[[ info.infoContent ]]</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu">
+      <div class="pt-2 pb-4 space-y-1">
+        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+        <a href="{% url 'time_management:index' %}" class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"> Dashboard </a>
+        <a href="{% url 'time_management:new' %}" class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"> Chek Out </a>
+        <a href="{% url 'time_management:visualize' %}" class="border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"> Visuaize </a>
+      </div>
+    </div>
+  </nav>
 {% else %}
 <header class="bg-teal-600">
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -36,6 +104,32 @@
             </div>
         </div>
     </nav>
-</header>
+  </header>
 
 {% endif %}
+
+<script>
+  const info = Vue.createApp({
+    data(){
+      return {
+        showInfo: false,
+        infoContents: []
+      }
+    },
+    delimiters: ['[[', ']]'],
+    mounted(){
+      axios.get('/api/get_information')
+      .then(
+        response => {
+          this.infoContents= response.data;
+          console.log(response.data)
+        })
+        .catch(error => console.log(error))
+    },
+    methods: {
+      changeState(event) {
+        this.showInfo = !this.showInfo
+      }
+    }
+  }).mount('#navState')
+</script>
